@@ -1,7 +1,7 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         answer=''
-        if numRows==1:
+        if numRows==1:#error occur
             return s
         freq=2*(numRows-1)
         length=len(s)
