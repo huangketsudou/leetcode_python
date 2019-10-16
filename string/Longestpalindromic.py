@@ -22,8 +22,8 @@ class Solution:
                         MaxLength = length[i]
                         MaxCenter = i
         answer=s[MaxCenter-MaxLength:MaxCenter+MaxLength+1]
-        answer=answer.replace('#','')
-        return answer
+        # answer=answer.replace('#','')
+        return answer[1::2]
 
     def find(self, s, center, length):
         while center - length - 1 >= 0 and center + length + 1 < len(s) and s[center - length - 1] == s[
