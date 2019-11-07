@@ -18,7 +18,7 @@ class Solution:
         for i in range(n):
             if i in used:
                 continue
-            if nums[i]==nums[i-1] and i-1 not in used:
+            if i>0 and nums[i]==nums[i-1] and i-1 not in used:
                 continue
             tmp.append(nums[i])
             used.append(i)
