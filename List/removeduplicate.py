@@ -32,3 +32,34 @@ class Solution2:
 
 k=Solution2()
 print(k.removeDuplicates([0,0,1]))
+
+
+
+
+class Solution:
+    #允许元素重复两次
+    def removeDuplicates(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==0:return -1
+        slow=0
+        fast=1
+        count=1
+        while fast<n:
+            if nums[fast]==nums[slow] and count<2:
+                slow+=1
+                nums[slow],nums[fast]=nums[fast],nums[slow]
+                fast+=1
+                count+=1
+            elif nums[fast]==nums[slow] and count==2:
+                fast+=1
+            else:
+                slow+=1
+                nums[slow],nums[fast]=nums[fast],nums[slow]
+                fast+=1
+                count=1
+        return slow+1
+    
+k=Solution()
+a=[1,1,1,1,1,1,1,1,3]
+print(k.removeDuplicates(a))
+print(a)
