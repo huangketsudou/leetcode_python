@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-
+        #利用了combine的函数内容
         def combinations(iterable, r):
             # combinations('ABCD', 2) --> AB AC AD BC BD CD
             # combinations(range(4), 3) --> 012 013 023 123
