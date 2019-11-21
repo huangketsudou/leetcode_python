@@ -43,7 +43,7 @@ class TreeNode:
 
 
 class Solution:
-    #统计树的数量
+    #统计树的数量——超时
     def numTrees(self, n: int) -> int:
         answer = self.core(1, n)
 
@@ -60,6 +60,39 @@ class Solution:
                 res += left * right
         return res
 
+    
+    
+class Solution2:
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        #另G代表左右子树有几个节点能有几种情况
+        G = [0]*(n+1)
+        G[0], G[1] = 1, 1
+
+        for i in range(2, n+1):
+            for j in range(1, i+1):
+                G[i] += G[j-1] * G[i-j]
+
+        return G[n]
+
+
+class Solution3(object):
+    #卡塔兰数计算
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        C = 1
+        for i in range(0, n):
+            C = C * 2*(2*i+1)/(i+2)
+        return int(C)
+    
+    
+    
 
 k = Solution()
 print(k.numTrees(3))
