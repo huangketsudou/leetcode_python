@@ -53,6 +53,41 @@ class Solution:
 
 
 
+class Solution2:
+    def recoverTree(self, root: TreeNode) -> None:
+        first = None
+        second = None
+        pre = None
+        curr = root
+        while curr:
+            if curr.left == None:
+                if pre != None and pre.val > curr.val:
+                    if first == None:
+                        first = pre
+                        second = curr
+                    else:
+                        second = curr
+                pre = curr
+                curr = curr.right
+            else:
+                tmp = curr.left
+                while tmp.right != None and tmp.right != curr:  # != curr用于找到当前的curr
+                    tmp = tmp.right
+                if tmp.right == None:  # 子树的最右节点附上下一节点
+                    tmp.right = curr
+                    curr = curr.left
+                else:
+                    tmp.right = None  # 恢复树形状
+                    if pre != None and pre.val > curr.val:
+                        if first == None:
+                            first = pre
+                            second = curr
+                        else:
+                            second = curr
+                    pre = curr
+                    curr = curr.right
+        first.val, second.val = second.val, first.val
+
 
 t1=TreeNode(1)
 t3=TreeNode(3)
