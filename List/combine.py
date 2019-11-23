@@ -38,6 +38,7 @@ class Solution2:
                 else:
                     return
                 indices[i] += 1
+                #修改后方数值
                 for j in range(i + 1, r):
                     indices[j] = indices[j - 1] + 1
                 yield tuple(pool[i] for i in indices)
@@ -62,11 +63,12 @@ class Solution3:
             # increase first nums[j] by one
             # if nums[j] + 1 != nums[j + 1]
             j = 0
+            #修改前方的数值
             while j < k and nums[j + 1] == nums[j] + 1:
                 nums[j] = j + 1
                 j += 1
             nums[j] += 1
-
+        
         return output
 
 
