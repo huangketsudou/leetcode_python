@@ -11,6 +11,7 @@ class Node:
 
 
 class Solution:
+    #完美二叉树
     def connect(self, root: 'Node') -> 'Node':
         if not root:return root
         stack=[root]
@@ -30,6 +31,7 @@ class Solution:
 
 
 class Solution2:
+    #完美二叉树
     def connect(self, root: 'Node') -> 'Node':
         pre=root
         while pre:
@@ -41,7 +43,57 @@ class Solution2:
             pre=pre.left
         return root
 
+    
+    
+class Solution3:
+    #不完美二叉树
+    def connect(self, root: 'Node') -> 'Node':
+        cur=root
+        head=None
+        tail=None
+        while cur:
+            while cur:
+                if cur.left:
+                    if not head:
+                        head=cur.left
+                        tail=cur.left
+                    else:
+                        tail.next=cur.left
+                        tail=tail.next
+                if cur.right:
+                    if not head:
+                        head=cur.right
+                        tail=cur.right
+                    else:
+                        tail.next=cur.right
+                        tail=tail.next
+                cur=cur.next
+            cur=head
+            head=None
+            tail=None
+        return root
 
+
+class Solution4:
+    #不完美二叉树
+    def connect(self, root: 'Node') -> 'Node':
+        cur=root
+        while cur:
+            dummy=Node(-1)
+            tail=dummy
+            while cur:
+                if cur.left:
+                    tail.next=cur.left
+                    tail=tail.next
+                if cur.right:
+                    tail.next=cur.right
+                    tail=tail.next
+                cur=cur.next
+            cur=dummy.next
+        return root
+
+    
+    
 t1=Node(1)
 t2=Node(2)
 t3=Node(3)
