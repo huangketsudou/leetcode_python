@@ -50,14 +50,14 @@ class Solution3:
         n=len(height)
         if n<3:return 0
         answer=current=0
-        #这个栈维护一个递减的数组，当发现数组值不单调增时出栈
+        #这个栈维护一个递减的数组，当发现数组值不单调减时出栈
         st=[]
         while current<n:
             while len(st)!=0 and height[current]>height[st[-1]]:
                 top=st.pop(-1)
                 if len(st)==0:
                     break
-                #横向计算可接水长度
+                #横向计算可接水长度，画图表示
                 distance=current-st[-1]-1
                 boundedheight=min(height[current],height[st[-1]])-height[top]
                 answer+=distance*boundedheight
