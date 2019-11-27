@@ -32,6 +32,7 @@ class Solution2:
         answer=0
         leftmax=[0]*n
         rightmax=[0]*n
+        #最右边有无限高的强，因此中间的装水受限于左边的大小
         leftmax[0]=height[0]
         for i in range(1,n):
             leftmax[i]=max(height[i],leftmax[i-1])
@@ -49,6 +50,7 @@ class Solution3:
         n=len(height)
         if n<3:return 0
         answer=current=0
+        #这个栈维护一个递减的数组，当发现数组值不单调增时出栈
         st=[]
         while current<n:
             while len(st)!=0 and height[current]>height[st[-1]]:
