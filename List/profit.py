@@ -39,7 +39,8 @@ class Solution_inf2:
         if not prices: return 0
         n = len(prices)
         dp = [[0] * 2 for _ in range(n)]
-        for i in range(1,n):
+        dp[-1][1]=float('-inf')
+        for i in range(n):
             dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])
             dp[i][1]=max(dp[i-1][1],dp[i-1][0]-prices[i])
         return dp[n-1][0]    
@@ -72,4 +73,4 @@ class Solution_11:
     
 
 k=Solution()
-print(k.maxProfit([7,1,5,3,3,6,4]))
+print(k.maxProfit([7,1,5,3,6,4]))
