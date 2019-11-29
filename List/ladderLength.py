@@ -66,6 +66,45 @@ class Solution2:
         return 0
 
 
+    
+    
+ class Solution:
+    # 广度优先搜索找最短路径
+    #给出相应的最短路径
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        if endWord not in wordList or not endWord or not beginWord or not wordList: return []
+        from collections import defaultdict
+        L = len(beginWord)
+        all_comb_dict = defaultdict(list)
+        for word in wordList:
+            for i in range(L):
+                all_comb_dict[word[:i] + '*' + word[i + 1:]].append(word)
+        queue = [(beginWord, [beginWord],1)]
+        answer=[]
+        visited={beginWord:1}
+        firstfound=True
+        minlevel=0
+        while queue:
+            currentword, path ,level= queue.pop(0)
+            for i in range(L):
+                intermediate_word = currentword[:i] + '*' + currentword[i + 1:]
+                for word in all_comb_dict[intermediate_word]:
+                    if word==endWord and word not in path:
+                        if firstfound:
+                            answer.append(path+[word])
+                            firstfound=False
+                            minlevel=level+1
+                        else:
+                            if level+1>minlevel:
+                                return answer
+                            else:
+                                answer.append(path+[word])
+                        continue
+                    if word not in visited or visited[word]>=level+1:
+                        visited[word]=1+level
+                        queue.append((word,path+[word],level+1))
+
+        return answer
 
 k=Solution2()
 print(k.ladderLength('hit','cog',["hot","dot","dog","lot","log","cog"]))
