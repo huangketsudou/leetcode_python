@@ -22,6 +22,7 @@ class Solution:
 
 
 class Solution2:
+    #问题的解决关键在于如果从i走到j在j点刚油不够了，那么i到j之间任何点都不可能能够走出j点
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         n = len(gas)
         cousume = [gas[i] - cost[i] for i in range(n)]
