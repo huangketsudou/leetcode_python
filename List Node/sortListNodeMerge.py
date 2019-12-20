@@ -15,7 +15,7 @@ class Solution:
         while fast and fast.next:
             slow, fast = slow.next, fast.next.next
         mid, slow.next = slow.next, None  # 切断
-        left, right = self.sortList(slow), self.sortList(mid)
+        left, right = self.sortList(head), self.sortList(mid)
         h = res = ListNode(float('-inf'))
         while left and right:
             if left.val < right.val:
@@ -23,7 +23,7 @@ class Solution:
             else:
                 h.next, right = right, right.next
             h = h.next
-        h.next = left or right
+        h.next = left if left else right
         return res.next
 
 
