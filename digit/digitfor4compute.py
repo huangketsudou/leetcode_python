@@ -54,6 +54,7 @@ def divide(m,n,p=False):
         count-=1
         n>>=1
         if m>=n:
+            #求商
             result=add(result,1<<count)
             m=substract(m,n)
     if sign:
