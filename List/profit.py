@@ -86,6 +86,32 @@ class Solution_2:
         return dp[n-1][2][0]
     
 
+    
+class Solution:
+    #限制交易次数为k
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if k==0:return 0
+        if k > n // 2:
+            maxprofit = 0
+            minprice = float('-inf')
+            for i in range(n):
+                tmp = maxprofit
+                maxprofit = max(maxprofit, minprice + prices[i])
+                minprice = max(minprice, tmp - prices[i])
+            return maxprofit
+        dp = [[[0] * 2 for _ in range(k+1)] for _ in range(n)]
+        for i in range(n):
+            for l in range(1,k+1):
+                if i == 0:
+                    dp[i][l][0] = 0
+                    dp[i][l][1] = -prices[i]
+                    continue
+                dp[i][l][0] = max(dp[i - 1][l][0], dp[i - 1][l][1] + prices[i])
+                dp[i][l][1] = max(dp[i - 1][l][1], dp[i - 1][l - 1][0] - prices[i])
+        return dp[n - 1][k][0]    
+    
+
 
 k=Solution()
 print(k.maxProfit([7,1,5,3,6,4]))
