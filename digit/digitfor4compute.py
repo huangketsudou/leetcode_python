@@ -29,6 +29,7 @@ def multiply(m,n):
     n=myabs(n)
     ans=0
     while n:
+        #小学的长乘法
         if n & 1:
             ans=add(ans,m)
         m=m<<1
