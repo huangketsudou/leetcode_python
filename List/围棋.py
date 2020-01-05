@@ -150,6 +150,7 @@ class Solution3:
         for i in range(row):
             for j in range(col):
                 if my_find(dummy) == my_find(i * col + j):
+                    #找到边界上的“O”
                     board[i][j] = "O"
                 else:
                     board[i][j] = "X"
