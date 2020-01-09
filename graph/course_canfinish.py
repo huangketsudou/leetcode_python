@@ -1,11 +1,10 @@
 from typing import List
-import functools
-import math
-import itertools
+
 
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #实际上是一道探讨有向非循环图的题目
         from collections import defaultdict
         count = defaultdict(int)
         for i in range(numCourses):
