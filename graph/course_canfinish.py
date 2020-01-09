@@ -59,6 +59,37 @@ class Solution:
             if not dfs(i, set()): return False
         return True
 
+    
+    
+    
+    
+class Solution3:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        #给出学习路线表
+        from collections import defaultdict
+        count = defaultdict(int)
+        for i in range(numCourses):
+            count[i] = 0
+        graph = defaultdict(list)
+        for i, j in prerequisites:
+            graph[j].append(i)
+            count[i] += 1
+        ready = []
+        for k, v in count.items():
+            if v == 0:
+                ready.append(k)
+        topo = []
+        while ready:
+            u = ready.pop()
+            topo.append(u)
+            for e in graph[u]:
+                count[e] -= 1
+                if count[e] == 0:
+                    ready.append(e)
+        return topo if len(topo)==numCourses else []
+
+k=Solution3()
+print(k.findOrder(4, [[1,0],[2,0],[3,1],[3,2]]))
 
 
 k=Solution()
