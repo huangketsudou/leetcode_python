@@ -30,3 +30,25 @@ class Solution2:
 
 k=Solution2()
 print(k.rob([1,7,9,4]))
+
+
+
+
+class Solution:
+    #表是循环的，头和尾不能同时取
+    def rob(self, nums: List[int]) -> int:
+        #分析可得知，对于循环的表，头和尾不能同时取得，所以将其去掉
+        if not nums: return 0
+        def core(array):
+            prev, cur = 0, 0
+            for num in array:
+                tmp=cur
+                cur=max(prev+num,cur)
+                prev=tmp
+            return cur
+
+        return max(core(nums[1:]),core(nums[:-1])) if len(nums)>1 else nums[0]
+
+
+k=Solution()
+print(k.rob([2,3,1]))
