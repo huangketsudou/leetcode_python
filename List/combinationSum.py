@@ -30,3 +30,31 @@ class Solution:
 k=Solution()
 b=k.combinationSum([2,3,5],8)
 print(b)
+
+
+
+class Solution2:
+    #k个数的组合和，不允许重复
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        answer = []
+        tmp = []
+
+        def core(temp,end):
+
+            for i in range(end,10):
+                if len(temp)+1==k:
+                    if sum(temp)+i==n:
+                        answer.append(temp+[i])
+                    elif sum(temp)+i>n:
+                        break
+                    else:
+                        continue
+                else:
+                    if sum(temp)+i>=n:
+                        break
+                    else:
+                        core(temp+[i],i+1)
+
+
+        core(tmp,1)
+        return answer
