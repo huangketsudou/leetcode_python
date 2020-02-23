@@ -76,7 +76,7 @@ class Solution:
 
         #3.遍历每一个点，分别判断出堆、入堆、添加关键点操作。
         for l, h, r in points:
-            while l >= heap[0][1]: #出堆：保证当前堆顶为去除之前建筑物右端点的最大值。
+            while l >= heap[0][1]: #出堆：保证当前堆顶为去除之前建筑物右端点的最大值。关键
                 heapq.heappop(heap)
             if h < 0: #入堆：所有左端点都要入堆
                 heapq.heappush(heap, [h, r])
