@@ -1,6 +1,6 @@
 class Solution:
     def getSkyline(self, buildings: 'List[List[int]]') -> 'List[List[int]]':
-
+        #多种元素做一件事
         n = len(buildings)
         if n == 0: return []
         if n == 1:
