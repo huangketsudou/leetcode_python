@@ -15,6 +15,7 @@ class Solution4:
 
                 # compute the maximum area rectangle with a lower right corner at [i, j]
                 for k in range(i, -1, -1):
+                    #寻找边长，要从靠近i侧找起，寻找较小值
                     width = min(width, dp[k][j])
                     maxarea = max(maxarea, width * (i-k+1))
         return maxarea
