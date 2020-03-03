@@ -33,7 +33,7 @@ class Solution2:
         left, right = 0, 2 ** d - 1
         for _ in range(d):
             pivot = left + (right - left) // 2
-            if idx <= pivot:
+            if idx <= pivot: #这里的设置用0，1，2，3这样检查下
                 node = node.left
                 right = pivot
             else:
@@ -55,6 +55,7 @@ class Solution2:
         # Perform binary search to check how many nodes exist.
         left, right = 1, 2 ** d - 1
         while left <= right:
+            #注意这里的left=pivot+1和right=pivot-1是为了保证能够退出循环，如果left，right都为1是，没有这两个条件可能无法退出循环
             pivot = left + (right - left) // 2
             if self.exists(pivot, d, root):
                 left = pivot + 1
