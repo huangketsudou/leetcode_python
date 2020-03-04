@@ -1,6 +1,7 @@
 from typing import List
 
-
+#---------------------------------
+只有加减，带括号
 class Solution:
     def calculate(self, s: str) -> int:
         if not s: return 0
@@ -94,3 +95,44 @@ class Solution2:
 k=Solution()
 print(k.calculate("(1+(4+5+2)-3)+(6+8)"))
 print(compute("(1+(4+5+2)-3)+(6+8)",0))
+
+#加减乘除，不带括号
+
+
+from typing import List
+from collections import deque
+
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        operand = 0
+        sign = '+'
+        stack = []
+        for i, v in enumerate(s):
+            if v.isdigit():
+                operand = operand * 10 + int(v)
+            if v in '+-*/' or i == len(s) - 1:
+                if sign == '+':
+                    stack.append(operand)
+
+                elif sign == '-':
+                    stack.append(-operand)
+
+                elif sign == '*':
+                    stack.append(stack.pop() * operand)
+
+                elif sign == '/':
+                    if stack[-1]<0:
+                        stack.append(-(-stack.pop()//operand))
+                    else:
+                        stack.append(stack.pop() // operand)
+
+                sign = v
+                operand = 0
+        return sum(stack)
+
+
+k = Solution()
+print(k.calculate("14-3/2"))
+
+
