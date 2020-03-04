@@ -136,3 +136,22 @@ k = Solution()
 print(k.calculate("14-3/2"))
 
 
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        operaters = {
+            '+':lambda x : stack.append(x),
+            '-':lambda x : stack.append(-x),
+            '*':lambda x : stack.append(x*stack.pop()),
+            '/':lambda x : stack.append(int(stack.pop()/x)),
+        }
+        num = 0
+        last_op = '+'
+        for c in s + 'e':# 结束符，把最后一个数字和字符结合起来
+            if c.isdigit():
+                num = num*10+int(c)
+            elif c != ' ': # 遇到下一个符号，上一个符号和上一个数字结算
+                res = operaters[last_op](num)
+                num = 0
+                last_op = c
+        return sum(stack)
