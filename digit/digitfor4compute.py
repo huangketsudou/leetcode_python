@@ -7,6 +7,9 @@ def substract(m,n):
     return add(m,negative(n))
 
 
+def getTrueBit(n):
+    return bin(-5 & 0xffffffff)
+
 def add(a, b):
         while(b):
            a,b = (a^b) & 0xFFFFFFFF,((a&b)<<1) & 0xFFFFFFFF
