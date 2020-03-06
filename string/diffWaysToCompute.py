@@ -1,4 +1,4 @@
-#题解思路来源
+#题解思路来源-3
 #https://leetcode-cn.com/problems/different-ways-to-add-parentheses/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-5-5/
 
 from typing import List
