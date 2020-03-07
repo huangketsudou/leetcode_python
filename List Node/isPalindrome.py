@@ -9,7 +9,7 @@ class ListNode:
 
 
 class Solution:
-    #不能用于多线程情况
+    #不能在多线程情况下使用
     def isPalindrome(self, head: ListNode) -> bool:
         if head is None:
             return True
