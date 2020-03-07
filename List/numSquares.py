@@ -27,14 +27,16 @@ class Solution2:
     def numSquares(self, n: int) -> int:
         stack=deque()
         stack.append((0,n))
-        visited=[n]#缺乏这个剪枝会超出内存
+        visited=set()
+        visited.add(n)#缺乏这个剪枝会超出内存
         while stack:
             result,number=stack.popleft()
-            if number==0:
-                return result
             for i in range(1,int(math.sqrt(number)+1)):
-                if number-i**2 not in visited:#减少重复树枝的计算
-                    stack.append((result+1,number-i**2))
+                k=number-i**2
+                if k==0:return result+1
+                if k not in visited:#减少重复树枝的计算
+                    stack.append((result+1,k))
+                    visited.add(k)
 
 
 class Solution3:
@@ -49,7 +51,18 @@ class Solution3:
         return dp[-1]
 
 
-
+class Solution4:
+    #费马四数和定理-https://zhuanlan.zhihu.com/p/104030654
+    def numSquares(self,n):
+        if int(math.sqrt(n))**2==n:return 1
+        while n%4==0:
+            n=n//4
+        if ((n-7)%8)==0:
+            return 4
+        for i in range(1,int(math.sqrt(n))+1):
+            y=int(math.sqrt(n-i**2))
+            if y**2+i**2==n:return 2
+        return 3
 
 
 k=Solution2()
