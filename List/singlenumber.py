@@ -1,3 +1,4 @@
+#仅有一个数字出现了1次，其他两次
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
         result=0
@@ -32,3 +33,13 @@ class Solution3(object):
 
 k=Solution()
 print(k.singleNumber([2,2,4,4,3]))
+
+#-------------------------------
+#列表中仅有一个数字只出现了一次，其他出现了3次
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        ones, twos = 0, 0
+        for i in nums:
+            ones = ones ^ i & ~ twos
+            twos = twos ^ i & ~ ones
+        return ones
