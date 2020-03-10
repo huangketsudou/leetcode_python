@@ -6,7 +6,7 @@ import functools
 import math
 from collections import deque
 
-
+#不考虑重复元素
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result=[]
@@ -45,3 +45,40 @@ class Solution:
         num2=set(set2)
 
         return list(num1 & num2)
+
+    
+    
+#--------------------------------------------------------------------
+#考虑重复元素，交集包括重复元素
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        n2=Counter(nums2)
+        result=[]
+        for num in nums1:
+            if num in n2 and n2[num]!=0:
+                result.append(num)
+                n2[num]-=1
+        return result
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        p1=p2=0
+        result=[]
+        while p1<len(nums1) and p2<len(nums2):
+            if nums1[p1]==nums2[p2]:
+                result.append(nums1[p1])
+                p1+=1
+                p2+=1
+            elif nums1[p1]<nums2[p2]:
+                p1+=1
+            else:
+                p2+=1
+        return result
+
+
+
+
+k=Solution()
+print(k.intersect(nums1 = [1,2,2,1], nums2 = [2,2]))
