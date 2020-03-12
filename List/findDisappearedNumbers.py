@@ -1,3 +1,4 @@
+#要求使用O(1)空间
 class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         n=len(nums)
