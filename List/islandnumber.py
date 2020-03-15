@@ -54,6 +54,7 @@ class Solution2:
 
 
 class Solution3:
+    #并查集
     def numIslands(self, grid: List[List[str]]) -> int:
         n = len(grid)
         if n == 0: return 0
