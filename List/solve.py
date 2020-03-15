@@ -36,6 +36,8 @@ class Solution:
 
 
         def my_union(x,y):
+            #实际上，在连接的过程中，只是把两个最上的祖先连接起来了，
+            #将子孙节点连到更新后的节点的是fing函数
             x1=my_find(x)
             y1=my_find(y)
             if x1!=y1:
