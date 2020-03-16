@@ -5,6 +5,7 @@ import itertools
 
 
 class Solution:
+    #flood fill算法-扫雷游戏
     def numIslands(self, grid: List[List[str]]) -> int:
         n = len(grid)
         if n == 0: return 0
