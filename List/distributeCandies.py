@@ -40,3 +40,21 @@ class Solution:
         # remaining candies
         d[cols] += remaining
         return d
+class Solution:
+    def distributeCandies(self, candies: List[int]) -> int:
+        c=Counter(candies)
+        kinds=len(list(c.values()))
+        n=len(candies)
+
+        if kinds>=n//2:return n//2
+        else:
+            return kinds
+
+class Solution:
+    def distributeCandies(self, candies: List[int]) -> int:
+        each = len(candies) // 2
+        candies_set = set(candies)
+        return each if each <= len(candies_set) else len(candies_set)
+
+k=Solution()
+print(k.distributeCandies([1,1,2,2,3,3]))
