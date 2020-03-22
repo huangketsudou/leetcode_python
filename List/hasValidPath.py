@@ -24,5 +24,5 @@ class Solution:
                             if nx==m-1 and ny==n-1:
                                 return True
                             queue.append((nx,ny))
-            grid[x][y]=-1
+            grid[x][y]=-1#通过修改grid来防止回头
         return False
