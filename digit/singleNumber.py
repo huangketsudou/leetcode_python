@@ -13,6 +13,7 @@ class Solution:
         x = 0
         for num in nums:
             # bitmask which will contain only x
+            #注意也存在其他数与bitmask与的结果为1，但这些数会出现两次，被异或掉了
             if num & diff:
                 x ^= num
 
