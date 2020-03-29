@@ -25,6 +25,29 @@ class Solution:
                     grid[nx][ny]=1
         return res if res>0 else -1
 
+class Solution:
+    #动态规划
+    def maxDistance(self, grid: List[List[int]]) -> int:
+        n,m=len(grid),len(grid[0])
+        dp=[[float('inf')]*m for _ in range(n)]
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]==1:
+                    dp[i][j]=0
+                else:
+                    if i>=1:dp[i][j]=min(dp[i][j],dp[i-1][j]+1)
+                    if j>=1:dp[i][j]=min(dp[i][j],dp[i][j-1]+1)
+        for i in range(n-1,-1,-1):
+            for j in range(m-1,-1,-1):
+                if grid[i][j]==0:
+                    if i+1<n:dp[i][j]=min(dp[i][j],dp[i+1][j]+1)
+                    if j+1<m:dp[i][j]=min(dp[i][j],dp[i][j+1]+1)
+        ans=-1
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]!=1:
+                    ans=max(dp[i][j],ans)
+        return ans if ans!=float('inf') else -1
 
 
 k=Solution()
