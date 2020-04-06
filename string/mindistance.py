@@ -2,6 +2,9 @@ from typing import List
 
 
 class Solution:
+    #解题思路-dp数组定义为编辑word1[:i]和word2[:j]时需要的编辑次数，横向为目标字符串，纵向为现有的字符串，
+    #其中dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
+    #字符串从空字符开始，对于空字符串，横向为不断添加，纵向为一直删除
     def minDistance(self, word1: str, word2: str) -> int:
         n1 = len(word1)
         n2 = len(word2)
@@ -18,17 +21,19 @@ class Solution:
                     dp[i][j] = dp[i-1][j-1]
                 else:
                     #其中，dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。
+                 
                     dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1] ) + 1
         #print(dp)
         return dp[-1][-1]
 
 
 class Solution2:
+    #DFS
     def minDistance(self, word1: str, word2: str) -> int:
         import functools
         @functools.lru_cache(None)
         def helper(i, j):
-            if i == len(word1) or j == len(word2):
+            if i == len(word1) or j == len(word2):#当某一个字符串走到末尾了，就只剩下删除了，同时也是找到目标的标记
                 return len(word1) - i + len(word2) - j
             if word1[i] == word2[j]:
                 return helper(i + 1, j + 1)
@@ -42,6 +47,7 @@ class Solution2:
 
 
 class Solution3:
+    #BFS方法
     def minDistance(self, word1: str, word2: str) -> int:
         if not word1 or not word2:
             return max(len(word1),len(word2))
@@ -59,7 +65,7 @@ class Solution3:
                     return lv
                 if i<len(word1) and j<len(word2):
                     if word1[i]==word2[j]:
-                        stack.append((i+1,j+1,lv))
+                        stack.append((i+1,j+1,lv))#注意这里的stack，保证每次遍历的时候都是同一个修改次数
                         continue
                     else:
                         #rep
