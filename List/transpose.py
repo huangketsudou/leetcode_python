@@ -9,3 +9,8 @@ class Solution:
             for j in range(m):
                 dp[i][j]=A[j][i]
         return dp
+
+    
+class Solution:
+    def transpose(self, A: List[List[int]]) -> List[List[int]]:
+        return list(zip(*A))
