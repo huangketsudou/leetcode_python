@@ -14,3 +14,4 @@ class Solution:
             A=list(map(int,str(K+carry)))+A
         return A
 
+k=Solution()
