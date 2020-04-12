@@ -15,3 +15,4 @@ class Solution:
         return A
 
 k=Solution()
+print(k.addToArrayForm([9,9,9,9],1))
