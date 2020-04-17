@@ -4,6 +4,7 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
+        #对每一个数字检验其最右边界，当右边界小于数组长度时，不可达
         start = 0
         end = 0
         n = len(nums)
