@@ -6,7 +6,7 @@ class Solution:
         
         for i in [2,3,5]:
             while num % i ==0:
-                num/=i
+                num//=i
     
     
 
@@ -42,11 +42,8 @@ class Solution:
 #--------------------------------------------------------------
 
 
-class Solution:
-    u = Ugly()
+class Ugly:
 
-    def nthUglyNumber(self, n):
-        return self.u.nums[n - 1]
 
     def __init__(self):
         self.nums = nums = [1, ]
