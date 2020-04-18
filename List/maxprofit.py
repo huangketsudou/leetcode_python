@@ -111,6 +111,31 @@ class Solution:
                 dp[i][l][1] = max(dp[i - 1][l][1], dp[i - 1][l - 1][0] - prices[i])
         return dp[n - 1][k][0]    
     
+class Solution_cool:
+    # 不限制交易次数，冷静期
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices: return 0
+        n = len(prices)
+        dp = [[0] * 2 for _ in range(n+1)]#加1是为了避免出现[1]这样的数组导致索引出错
+        dp[0][1]=float('-inf') #0是初始状态，索引修改这里的dp[-1][1]为dp[0][1]
+        for i in range(1,n+1):
+            dp[i][0]=max(dp[i-1][0],dp[i-1][1]+prices[i])
+            dp[i][1]=max(dp[i-1][1],dp[i-2][0]-prices[i])
+        return dp[n][0]
+
+
+class Solution_cool2:
+    # 不限制交易次数
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:return 0
+        pre_selled,pre_bought=0,float('-inf')
+        last_selled=0
+        for i in prices:
+            tmp=pre_selled
+            pre_selled=max(pre_selled,pre_bought+i)
+            pre_bought=max(pre_bought,last_selled-i)
+            last_selled=tmp
+        return pre_selled
 
 
 k=Solution()
