@@ -51,19 +51,31 @@ class Solution:
             else:
                 curr += 1
 
-        # 交叉合并，空间O(N)
-        # small, big, _nums = mid, n - 1, nums[:]
-        # for i in range(n):
-        #     if i % 2 == 0:
-        #         nums[i] = _nums[small]
-        #         small -= 1
-        #     else:  # big
-        #         nums[i] = _nums[big]
-        #         big -= 1
+        #交叉合并，空间O(N)
+        small, big, _nums = mid, n - 1, nums[:]
+        for i in range(n):
+            if i % 2 == 0:
+                nums[i] = _nums[small]
+                small -= 1
+            else:  # big
+                nums[i] = _nums[big]
+                big -= 1
         # 空间O(1)
         A = lambda i: (1 + 2 * (i)) % (n | 1)
         i, j, k = 0, 0, n - 1
-
+        #下面这里一段程序可以理解为对于映射空间A(i)，要求，其配列满足前面的数字大于midnum
+        #就是上面的三路划分，其中A满足方程内的映射规则，即最后各个A(i)能够在原数组中找到对应的数
+        # Accessing A(0) actually accesses nums[1].
+        # Accessing A(1) actually accesses nums[3].
+        # Accessing A(2) actually accesses nums[5].
+        # Accessing A(3) actually accesses nums[7].
+        # Accessing A(4) actually accesses nums[9].
+        # Accessing A(5) actually accesses nums[0].
+        # Accessing A(6) actually accesses nums[2].
+        # Accessing A(7) actually accesses nums[4].
+        # Accessing A(8) actually accesses nums[6].
+        # Accessing A(9) actually accesses nums[8].
+        #这样一来，原数组最终就能满足我们的要求
         while j <= k:
             print(nums)
             print(i,j,k)
