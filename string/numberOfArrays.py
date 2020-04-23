@@ -44,11 +44,25 @@ class Solution:
         for i in range(1, n+1):
             for j in range(1, m+1):#定义这里的m，可以避免出现c或者java里的溢出
                 if i-j >= 0:
-                    if s[i-j] != '0' and int(s[i-j:i]) <= k:
+                    if s[i-j] != '0' and int(s[i-j:i]) <= k:#开头不为0，且数字小
                         f[i] += f[i-j]
                         f[i] %= MOD
         return f[n]
 
+class Solution3:
+    def numberOfArrays(self, s: str, k: int) -> int:
+        n=len(s)
+        m=len(str(k))
+        dp=[0]*(n+1)
+        dp[-1]=1
+        MOD=10**9+7
+        for i in range(n-1,-1,-1):
+            for j in range(1,m+1):
+                if i+j<=n:
+                    if s[i]!='0' and int(s[i:i+j])<=k:
+                        dp[i]+=dp[i+j]
+                        dp[i] %= MOD
+        return dp[0]
 
-k=Solution()
+k=Solution3()
 print(k.numberOfArrays("1234567890",90))
