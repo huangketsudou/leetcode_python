@@ -13,7 +13,7 @@ class Solution:
 
     def core(self,n,answer,nums,tmp,used):
         if len(used)==n:
-            answer.append(tmp[:])
+            answer.append(tmp[:])#这里必须用列表切片实现列表的复制，不然输出的所有结果都是一样的
         for i in range(n):
             if i in used:
                 continue
@@ -22,6 +22,25 @@ class Solution:
             self.core(n,answer,nums,tmp,used)
             used.pop(-1)
             tmp.pop(-1)
+
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        n=len(nums)
+        ans=[]
+
+        def core(tmp,seen):
+            if len(tmp)==n:
+                ans.append(tmp)
+                return
+            for i in range(n):
+                if i not in seen:
+                    seen.add(i)
+                    core(tmp+[nums[i]],seen)
+                    seen.remove(i)
+        saw=set()
+        core([],saw)
+        return ans
 
 
 class Solution:
