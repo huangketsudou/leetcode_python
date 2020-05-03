@@ -5,17 +5,17 @@ class Solution:
     def numberWays(self, hats: List[List[int]]) -> int:
         modp = 10 ** 9 + 7
         n = len(hats)
-        pn = 2 ** n
-        dp = [[None for j in range(pn)] for i in range(0, 41)]
+        pn = 2 ** n #bitmask表示状态压缩，标记每个人戴帽子的情况
+        dp = [[None for j in range(pn)] for i in range(0, 41)]#这里用None是为了和%modp做区别
         back = [[] for i in range(0, 41)]
         for i in range(n):
             for hat in hats[i]:
                 back[hat].append(i)
         dp[0][0] = 1
         for i in range(1, 41):
-            for j in range(0, pn):
+            for j in range(0, pn):#j表示此时戴帽子的状态，写成二进制表示就清楚了
                 dp[i][j] = dp[i - 1][j]
-                for k in back[i]:
+                for k in back[i]:#i这顶帽子可以分给k这个人
                     pk = 1 << k
                     if pk & j == 0:
                         continue
