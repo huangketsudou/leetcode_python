@@ -5,16 +5,16 @@ class Solution:
     def mySqrt(self, x: int) -> int:
         if x in [0]:
             return x
-        small=0
-        big=x//2+1
-        while small<big:
-            mid = (big + small+1) // 2
-            if mid==small or mid*mid==x:
+        small = 0
+        big = x // 2 + 1
+        while small < big:
+            mid = (big + small + 1) // 2
+            if mid == small or mid * mid == x:
                 return mid
-            elif mid*mid>x:
-                big=mid-1
+            elif mid * mid > x:
+                big = mid - 1
             else:
-                small=mid
+                small = mid
         return big
 
 
@@ -37,7 +37,13 @@ class Solution2:
         return left
 
 
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        num = x
+        while num * num > x:
+            num = (num + x // num) // 2
+        return num
 
 
-k=Solution()
+k = Solution()
 print(k.mySqrt(8))
