@@ -22,5 +22,5 @@ class Solution:
 k=Solution()
 print(k.firstMissingPositive([1,3,3]))
 
-k.firstMissingPositive([1,1]）
+k.firstMissingPositive([1,1])
 k.firstMissingPositive([3,4,-1,1])
