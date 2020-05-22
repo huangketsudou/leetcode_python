@@ -37,6 +37,29 @@ class Solution:
         root.right=self.buildTree(preorder[1+cur:],inorder[cur+1:])
         return root
 
+
+class Solution:
+    #迭代法计算思路
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder:
+            return None
+        root=TreeNode(preorder[0])
+        stack=[root]
+        inorderIndex=0
+        for i in range(1,len(preorder)):
+            preorderVal=preorder[i]
+            node=stack[-1]
+            if node.val!=inorder[inorderIndex]:
+                node.left=TreeNode(preorderVal)
+                stack.append(node.left)
+            else:
+                while stack and stack[-1].val == inorder[inorderIndex]:
+                    node=stack.pop()
+                    inorderIndex+=1
+                node.right=TreeNode(preorderVal)
+                stack.append(node.right)
+        return root
+
     
 class Solution3:
     #注意list.index是线性查找，最坏的情况退化到O(n**2),可以利用哈希表实现最坏O(n)
