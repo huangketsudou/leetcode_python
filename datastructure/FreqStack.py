@@ -1,5 +1,5 @@
 import collections
-
+# 也可以用堆来实现
 
 class FreqStack(object):
 
